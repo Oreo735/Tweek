@@ -1,3 +1,4 @@
+//phenotype is a set of timetables for the school
 
 function mutationFunction(phenotype) {
     // make a random change to phenotype
