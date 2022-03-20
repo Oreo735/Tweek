@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const Class = require("./class");
+const Classroom = require("./classroom");
 const Teacher = require("./teacher");
 
 const SchoolSchema = new Schema({
-  classes: [Class],
+  classrooms: [Classroom],
   teachers: [Teacher],
 });
 

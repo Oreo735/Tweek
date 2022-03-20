@@ -3,10 +3,10 @@ const Teacher = require("./teacher");
 const Timetable = require("./timetable");
 const Schema = mongoose.Schema;
 
-const ClassSchema = new Schema({
+const ClassroomSchema = new Schema({
   name: String,
   housemaster: Teacher,
   timetable: Timetable,
 });
 
-module.exports = mongoose.model("Class", ClassSchema);
+module.exports = mongoose.model("Classroom", ClassroomSchema);
