@@ -6,7 +6,11 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
-const dbUrl = process.env.DB_URL;
+
+const School = require("./models/school");
+const Classroom = require("./models/classroom");
+
+const dbUrl = "mongodb://localhost:27017/weeksliceDB" || process.env.DB_URL;
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -29,6 +33,11 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
+  const classroom1 = new Classroom({ name: "A1" });
+  const school1 = new School({});
+  console.log(classroom1);
+  console.log(school1);
+
   res.render("home");
 });
 

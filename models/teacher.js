@@ -6,8 +6,11 @@ const TeacherSchema = new Schema({
   birthdate: Date,
   phonenumber: Number,
   weeklyhours: Number,
-  phase: [String],
-  days: [String],
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 });
 
 module.exports = mongoose.model("Teacher", TeacherSchema);
