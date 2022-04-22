@@ -3,13 +3,11 @@ const Constraint = require("./constraint").schema;
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const DaySchema = new Schema({
-  periods: [Period],
-});
-
 const TimetableSchema = new Schema({
-  table: [DaySchema],
+  table: [[Period]],
   constraints: [Constraint],
+  score: Number,
 });
 
 module.exports = mongoose.model("Timetable", TimetableSchema);
+dffujjgjkg

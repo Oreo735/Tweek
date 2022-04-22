@@ -1,4 +1,4 @@
-const Classroom = require("./classroom");
+const Classroom = require("./classroom").schema;
 const Teacher = require("./teacher");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
