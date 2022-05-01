@@ -33,11 +33,6 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  const classroom1 = new Classroom({ name: "A1" });
-  const school1 = new School({});
-  console.log(classroom1);
-  console.log(school1);
-
   res.render("home");
 });
 

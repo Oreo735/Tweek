@@ -1,7 +1,9 @@
 //phenotype is a set of timetables for the school
 const School = require("../../models/school");
+const Teacher = require("../../models/teacher");
 const Timetable = require("../../models/timetable");
 const Classroom = require("../../models/classroom");
+
 function mutationFunction(phenotype) {
   // make a random change to phenotype
   return phenotype;
@@ -33,42 +35,36 @@ function doesABeatB(a, b) {
 }
 
 const init = async (schoolId) => {
-  let initial = [];
-  const timetable1 = new Timetable({
-    table: [],
-    score: 19,
-  });
-  console.log(timetable1);
-  const classr = new Classroom({
-    name: "class1",
-    timetable: timetable1,
-  });
-  console.log(classr);
-  const school = new School({
-    teachers: [],
-    classrooms: [classr._id],
-  });
-  const classrooms = school.classrooms;
+  const school = School.findById(schoolId)
+    .populate("teachers")
+    .populate("classrooms");
   const teachers = school.teachers;
-  console.log(school);
-  return initial;
+  const classrooms = school.classrooms;
+
+  const days = [
+    {
+      name: "Sunday",
+    },
+  ];
+  let timetable = new Timetable();
+  return [];
 };
 
-// let initialPopulation = init(556656);
-init(123);
-// let geneticAlgorithmConstructor = require("geneticalgorithm");
-// let geneticAlgorithm = geneticAlgorithmConstructor({
-//   mutationFunction: mutationFunction,
-//   crossoverFunction: crossoverFunction,
-//   fitnessFunction: fitnessFunction,
-//   doesABeatBFunction: doesABeatB,
-//   population: initialPopulation,
-// });
+let initialPopulation = init();
 
-// console.log("Starting with:");
-// console.log(firstPhenotype);
-// for (let i = 0; i < 100; i++) geneticAlgorithm.evolve();
-// let best = geneticAlgorithm.best();
-// delete best.score;
-// console.log("Finished with:");
-// console.log(best);
+let geneticAlgorithmConstructor = require("geneticalgorithm");
+let geneticAlgorithm = geneticAlgorithmConstructor({
+  mutationFunction: mutationFunction,
+  crossoverFunction: crossoverFunction,
+  fitnessFunction: fitnessFunction,
+  doesABeatBFunction: doesABeatB,
+  population: initialPopulation,
+});
+
+console.log("Starting with:");
+console.log(firstPhenotype);
+for (let i = 0; i < 100; i++) geneticAlgorithm.evolve();
+let best = geneticAlgorithm.best();
+delete best.score;
+console.log("Finished with:");
+console.log(best);

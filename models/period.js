@@ -1,12 +1,13 @@
 const Teacher = require("./teacher");
+const Classroom = require("./classroom");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const PeriodSchema = new Schema({
-  subject: String,
   teacher: { type: Schema.Types.ObjectId, ref: "Teacher" },
-  startTime: Date,
-  endTime: Date,
+  subject: String,
+  classroom: { type: Schema.Types.ObjectId, ref: "Classroom" },
+  time: Number,
 });
 
 module.exports = mongoose.model("Period", PeriodSchema);
