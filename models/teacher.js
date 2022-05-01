@@ -2,12 +2,16 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const TeacherSchema = new Schema({
-  fullname: String,
-  birthdate: Date,
+  firstname: String,
+  lastname: String,
+  age: Number,
   phonenumber: Number,
   weeklyhours: Number,
-  phase: [String],
-  days: [String],
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 });
 
 module.exports = mongoose.model("Teacher", TeacherSchema);

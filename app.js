@@ -6,7 +6,11 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
-const dbUrl = process.env.DB_URL;
+
+const School = require("./models/school");
+const Classroom = require("./models/classroom");
+
+const dbUrl = "mongodb://localhost:27017/weeksliceDB" || process.env.DB_URL;
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,

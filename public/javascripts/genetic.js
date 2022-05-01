@@ -1,4 +1,8 @@
 //phenotype is a set of timetables for the school
+const School = require("../../models/school");
+const Teacher = require("../../models/teacher");
+const Timetable = require("../../models/timetable");
+const Classroom = require("../../models/classroom");
 
 function mutationFunction(phenotype) {
   // make a random change to phenotype
@@ -30,13 +34,21 @@ function doesABeatB(a, b) {
   else return false;
 }
 
-function init(school) {
-  let initial = [];
-  let rooms = school.classrooms;
-  let teachers = school.teachers;
+const init = async (schoolId) => {
+  const school = School.findById(schoolId)
+    .populate("teachers")
+    .populate("classrooms");
+  const teachers = school.teachers;
+  const classrooms = school.classrooms;
 
-  return initial;
-}
+  const days = [
+    {
+      name: "Sunday",
+    },
+  ];
+  let timetable = new Timetable();
+  return [];
+};
 
 let initialPopulation = init();
 
